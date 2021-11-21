@@ -38,8 +38,9 @@ export default function Dashboard() {
 
   return (
     <div className="Dashboard">
-      <span>Ticket Viewer</span>
+      <div className="title">Ticket Viewer</div>
       <div className="DisplayList">
+        <div className="subTitle">All Open Tickets</div>
         {tickets.map((item) => (
           <TicketItem item={item} onItemClick={onItemClick} />
         ))}

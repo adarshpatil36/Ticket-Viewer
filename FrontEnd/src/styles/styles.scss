@@ -1,5 +1,49 @@
-$backgroundColor: #662d91;
+$primary-BackgroundColor: #662d91;
+$font-family: Montserrat, Helvetica, sans-serif;
+$font-size: 2.5em;
 
 body {
-    background-color: $backgroundColor;
+    background-color: $primary-BackgroundColor;
+}
+.title {
+    font-size: $font-size;
+    font-family: $font-family;
+    color: white;
+    padding: 30px;
+}
+.Dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .DisplayList {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        .subTitle {
+            justify-content: center;
+            display: flex;
+            font-size: 1.4em;
+            padding-bottom: 12px;
+        }
+    }
+}
+
+.TicketItem {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    padding: 18px;
+    min-width: 500px;
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+    span {
+        margin: 5px;
+    }
+    label {
+        font-weight: bold;
+    }
 }
