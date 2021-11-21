@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./styles/index.css";
+import "./styles/styles.scss";
 import reportWebVitals from "./reportWebVitals";
 import Dashboard from "./components/Dashboard";
 

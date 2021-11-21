@@ -1,28 +1,50 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { getTicketsData } from "../apis/apis";
+import TicketItem from "./TicketItem";
 
 export default function Dashboard() {
+  const [tickets, settickets] = useState([]);
+  const [selectedTicket, setSelectedTicket] = useState({});
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    getTicketsData();
+    setTicketsData();
   }, []);
 
-  //   const api = axios.create({
-  //     baseURL: "https://zendeskcodingchallenge9546.zendesk.com/api/v2",
-  //     responseType: "json",
-  //     responseEncoding: "utf8",
-  //   });
-  const api = {
-    baseURL: "https://zendeskcodingchallenge9546.zendesk.com/api/v2",
-    responseType: "json",
-    responseEncoding: "utf8",
+  const setTicketsData = async () => {
+    try {
+      const data = await getTicketsData();
+      console.log(">> ", data);
+      if (data === 401) {
+        setError({ msg: "Unauthorized Access" });
+      } else if (data === 404) {
+        setError({ msg: "Could not found the requested data" });
+      } else if (data === "Network Error") {
+        setError({
+          msg: "Network error please check the server or refresh the page",
+        });
+      }
+      settickets(data);
+    } catch (error) {
+      setError(error);
+    }
   };
 
-  const getTicketsData = () => {
-    fetch("http://localhost:3001").then((res) => console.log(">>", res));
+  const onItemClick = (data) => {
+    const selectedItem = tickets.find((item) => item.id === data.id);
+    setSelectedTicket(selectedItem);
   };
+
   return (
     <div className="Dashboard">
       <span>Ticket Viewer</span>
+      <div className="DisplayList">
+        {tickets.map((item) => (
+          <TicketItem item={item} onItemClick={onItemClick} />
+        ))}
+      </div>
+      {/* <DisplaySelectedTicket></DisplaySelectedTicket> */}
     </div>
   );
 }
