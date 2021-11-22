@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const { USER_NAME, PASSWORD } = require("./config");
 const app = express();
 const port = 3001;
 
@@ -23,8 +24,8 @@ app.get("/", (req, res) => {
   api
     .get("/requests.json", {
       auth: {
-        username: "akpatil36@gmail.com",
-        password: "12345",
+        username: USER_NAME,
+        password: PASSWORD,
       },
     })
     .then((response) => {
