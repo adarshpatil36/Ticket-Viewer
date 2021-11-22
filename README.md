@@ -5,7 +5,7 @@ Jest with React testing library for UI unit testing.
 
 **Note: To get the list of tickets please replace your credentials in the config file of the BackEnd folder. Existing are the wrong credentials so it will throw error if you run the app.**
 
-Requirement:</br>
+### Requirement:</br>
 Node</br>
 Git</br>
 
@@ -31,3 +31,12 @@ npm start
 ## Run UI Unit test cases:
 To run the UI test cases and to see the code coverage report run the below command:</br>
 `npm-test-coverage` 
+
+
+
+## Application UI
+
+<p align="center" style="margin:20px">
+    <img width="800" src="./Images/snap.png" alt="Screenshot 1"/>
+    <h3 align="center">App UI</h3>
+  </p>
