@@ -3,6 +3,7 @@
 exports[`TicketItem testing renders correctly 1`] = `
 <div
   className="TicketItem"
+  data-testid="ticketItem"
   onClick={[Function]}
 >
   <div>

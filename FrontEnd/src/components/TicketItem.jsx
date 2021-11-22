@@ -4,7 +4,11 @@ import { formateDate } from "../utils/util";
 
 export default function TicketItem({ item, onItemClick }) {
   return (
-    <div className="TicketItem" onClick={() => onItemClick(item)}>
+    <div
+      className="TicketItem"
+      data-testid="ticketItem"
+      onClick={() => onItemClick(item)}
+    >
       <div>
         <span>
           <label>{CONSTANTS.TICKET_DETAILS.ID}</label>

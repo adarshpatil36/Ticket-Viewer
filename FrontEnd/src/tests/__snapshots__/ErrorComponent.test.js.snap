@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorComponent testing renders correctly 1`] = `
+<div
+  className="ErrorComponent"
+  data-testid="errorComponent"
+>
+  Oops, there is an error : 
+   
+  <span>
+     
+    Network error
+  </span>
+</div>
+`;

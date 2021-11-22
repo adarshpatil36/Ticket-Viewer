@@ -47,10 +47,10 @@ describe("TicketItem testing", () => {
   });
 
   it("renders TicketItem with proper label", () => {
-    const { queryByLabelText } = render(
+    const { getByTestId } = render(
       <TicketItem item={mockData} onItemClick={onItemClick}></TicketItem>
     );
-    expect(queryByLabelText).toBeTruthy();
+    expect(getByTestId("ticketItem")).toHaveTextContent("Sat Nov 20 2021");
   });
 
   it("fires row click event in TicketItem properly", () => {
