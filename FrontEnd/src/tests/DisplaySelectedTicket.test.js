@@ -1,8 +1,9 @@
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
 import TicketItem from "../components/TicketItem";
+import DisplaySelectedTicket from "../components/DisplaySelectedTicket";
 
 describe("TicketItem testing", () => {
   const mockData = {
@@ -37,34 +38,16 @@ describe("TicketItem testing", () => {
     ticket_form_id: 1500003279781,
     fields: [],
   };
-  const onItemClick = jest.fn();
+  const handleModalClose = jest.fn();
   it("renders TicketItem component without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(
-      <TicketItem item={mockData} onItemClick={onItemClick}></TicketItem>,
+      <DisplaySelectedTicket
+        handleModalClose={() => handleModalClose()}
+        showModal={true}
+        item={mockData}
+      />,
       div
     );
-  });
-
-  it("renders TicketItem with proper label", () => {
-    const { queryByLabelText } = render(
-      <TicketItem item={mockData} onItemClick={onItemClick}></TicketItem>
-    );
-    expect(queryByLabelText).toBeTruthy();
-  });
-
-  it("fires row click event in TicketItem properly", () => {
-    render(<TicketItem item={mockData} onItemClick={onItemClick}></TicketItem>);
-    fireEvent.click(screen.getByText(/ID/i));
-    expect(onItemClick).toHaveBeenCalledTimes(1);
-  });
-
-  it("renders correctly", () => {
-    const tree = renderer
-      .create(
-        <TicketItem item={mockData} onItemClick={onItemClick}></TicketItem>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
   });
 });
