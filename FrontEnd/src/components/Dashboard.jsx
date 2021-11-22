@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getTicketsData } from "../apis/apis";
+import { CONSTANTS } from "../constants/constants";
 import DisplaySelectedTicket from "./DisplaySelectedTicket";
 import ErrorComponent from "./ErrorComponent";
 import TicketItem from "./TicketItem";
@@ -49,19 +50,19 @@ export default function Dashboard() {
   return (
     <>
       <div className="Dashboard">
-        <div className="title">Ticket Viewer</div>
+        <div className="title">{CONSTANTS.TITLE}</div>
         <div className="DisplayList">
           {error ? (
             <ErrorComponent message={error.msg} />
           ) : Array.isArray(tickets) && tickets.length > 0 ? (
             <>
-              <div className="subTitle">All Open Tickets</div>
-              {tickets.map((item) => (
-                <TicketItem item={item} onItemClick={onItemClick} />
+              <div className="subTitle">{CONSTANTS.SUB_TITLE}</div>
+              {tickets.map((item, index) => (
+                <TicketItem item={item} key={index} onItemClick={onItemClick} />
               ))}
             </>
           ) : (
-            <>No result found</>
+            <h3>{CONSTANTS.NO_DATA}</h3>
           )}
         </div>
       </div>

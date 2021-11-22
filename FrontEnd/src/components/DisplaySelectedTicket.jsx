@@ -1,5 +1,7 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
+import { CONSTANTS } from "../constants/constants";
+import { formateDate } from "../utils/util";
 
 export default function DisplaySelectedTicket({
   handleModalClose,
@@ -9,19 +11,22 @@ export default function DisplaySelectedTicket({
   return (
     <Modal show={showModal} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Requester ID: {item.requester_id}</Modal.Title>
+        <Modal.Title>
+          {CONSTANTS.TICKET_DETAILS.REQUESTER_ID}
+          {item.requester_id}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>{item.subject}</Modal.Body>
       <Modal.Body>
-        <h6>Description: </h6>
+        <h6>{CONSTANTS.TICKET_DETAILS.DESCRIPTION}</h6>
         {item.description}
       </Modal.Body>
       <Modal.Body>
-        <h6>Created At: </h6>
-        {item.created_at}
+        <h6>{CONSTANTS.TICKET_DETAILS.CREATED_AT}</h6>
+        {formateDate(item.created_at)}
       </Modal.Body>
       <Modal.Body>
-        <h6>Status: </h6>
+        <h6>{CONSTANTS.TICKET_DETAILS.STATUS}</h6>
         {item.status}
       </Modal.Body>
       <Modal.Footer>
