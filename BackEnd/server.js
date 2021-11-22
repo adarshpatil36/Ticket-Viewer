@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
     .get("/requests.json", {
       auth: {
         username: "akpatil36@gmail.com",
-        password: "Sjsu@123",
+        password: "12345",
       },
     })
     .then((response) => {

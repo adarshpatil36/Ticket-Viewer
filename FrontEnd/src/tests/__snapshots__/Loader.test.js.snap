@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoaderComponent testing renders correctly 1`] = `
+Array [
+  <div
+    className="spinner-border"
+    role="status"
+  >
+    <span
+      className="visually-hidden"
+    >
+      Loading...
+    </span>
+  </div>,
+  "Loading...",
+]
+`;

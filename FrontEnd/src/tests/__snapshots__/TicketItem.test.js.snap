@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TicketItem testing renders correctly 1`] = `
+<div
+  className="TicketItem"
+  onClick={[Function]}
+>
+  <div>
+    <span>
+      <label>
+        ID: 
+      </label>
+      <span>
+        4
+      </span>
+    </span>
+    <span>
+      <label>
+        Subject: 
+      </label>
+      <span>
+        Test ticket #2
+      </span>
+    </span>
+  </div>
+  <div>
+    <span>
+      <label>
+        Created At: 
+      </label>
+      <span>
+        Sat Nov 20 2021
+      </span>
+    </span>
+    <span>
+      <label>
+        Status: 
+      </label>
+      <span>
+        open
+      </span>
+    </span>
+  </div>
+</div>
+`;
