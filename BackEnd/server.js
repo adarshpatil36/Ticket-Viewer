@@ -18,9 +18,13 @@ const api = axios.create({
   responseType: "json",
   responseEncoding: "utf8",
 });
-
 // simple route
 app.get("/", (req, res) => {
+  res.json({ message: "Server started successfully and is running" });
+});
+
+// simple route
+app.get("/getTickets", (req, res) => {
   api
     .get("/requests.json", {
       auth: {
