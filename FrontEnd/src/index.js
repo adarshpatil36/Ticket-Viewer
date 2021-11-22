@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./styles/styles.scss";
 import reportWebVitals from "./reportWebVitals";
 import Dashboard from "./components/Dashboard";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>

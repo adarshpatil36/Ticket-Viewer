@@ -3,13 +3,13 @@ $font-family: Montserrat, Helvetica, sans-serif;
 $font-size: 2.5em;
 
 body {
-    background-color: $primary-BackgroundColor;
+    background-color: $primary-BackgroundColor !important;
 }
 .title {
     font-size: $font-size;
     font-family: $font-family;
     color: white;
-    padding: 30px;
+    padding: 50px 0px 30px;
 }
 .Dashboard {
     display: flex;
@@ -20,6 +20,9 @@ body {
         background-color: white;
         padding: 20px;
         border-radius: 8px;
+        min-height: 300px;
+        min-width: 800px;
+
         .subTitle {
             justify-content: center;
             display: flex;
@@ -33,9 +36,8 @@ body {
     border: 1px solid lightgray;
     border-radius: 5px;
     cursor: pointer;
-    margin: 5px;
+    margin: 10px;
     padding: 18px;
-    min-width: 500px;
     div {
         display: flex;
         justify-content: space-between;
@@ -45,5 +47,6 @@ body {
     }
     label {
         font-weight: bold;
+        cursor: pointer;
     }
 }
