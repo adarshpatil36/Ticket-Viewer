@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getTicketsData } from "../apis/apis";
 import { CONSTANTS } from "../constants/constants";
 import DisplaySelectedTicket from "./DisplaySelectedTicket";
 import ErrorComponent from "./ErrorComponent";
+import PaginationComponent from "./PaginationComponent";
 import TicketItem from "./TicketItem";
 
 export default function Dashboard() {
@@ -11,6 +11,40 @@ export default function Dashboard() {
   const [selectedTicket, setSelectedTicket] = useState({});
   const [showModal, setshowModal] = useState(false);
   const [error, setError] = useState(null);
+
+  const [pages, setPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const dataLimit = 6;
+  const pageLimit = 4;
+
+  function goToNextPage() {
+    setCurrentPage((page) => page + 1);
+  }
+
+  function goToPreviousPage() {
+    setCurrentPage((page) => page - 1);
+  }
+
+  function changePage(event) {
+    const pageNumber = Number(event.target.textContent);
+    setCurrentPage(pageNumber);
+  }
+
+  const getPaginatedData = () => {
+    const startIndex = currentPage * dataLimit - dataLimit;
+    const endIndex = startIndex + dataLimit;
+    return tickets.slice(startIndex, endIndex);
+  };
+
+  const getPaginationGroup = () => {
+    let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+    let totalPages = Math.ceil(tickets.length / dataLimit);
+    let groupSize =
+      start + pageLimit <= totalPages ? pageLimit : totalPages - pageLimit;
+    console.log(">>> ", groupSize);
+    return new Array(groupSize || 0).fill().map((_, idx) => start + idx + 1);
+  };
 
   useEffect(() => {
     setTicketsData();
@@ -30,6 +64,7 @@ export default function Dashboard() {
         });
       } else {
         settickets(data);
+        setPages(Math.ceil(data.length / dataLimit));
       }
     } catch (error) {
       setError(error);
@@ -57,9 +92,17 @@ export default function Dashboard() {
           ) : Array.isArray(tickets) && tickets.length > 0 ? (
             <>
               <div className="subTitle">{CONSTANTS.SUB_TITLE}</div>
-              {tickets.map((item, index) => (
+              {getPaginatedData().map((item, index) => (
                 <TicketItem item={item} key={index} onItemClick={onItemClick} />
               ))}
+              <PaginationComponent
+                goToPreviousPage={goToPreviousPage}
+                currentPage={currentPage}
+                getPaginationGroup={getPaginationGroup}
+                changePage={changePage}
+                pages={pages}
+                goToNextPage={goToNextPage}
+              />
             </>
           ) : (
             <h3>{CONSTANTS.NO_DATA}</h3>
