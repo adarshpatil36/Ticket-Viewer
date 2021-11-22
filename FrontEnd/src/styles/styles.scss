@@ -50,3 +50,15 @@ body {
         cursor: pointer;
     }
 }
+
+.ErrorComponent {
+    color: black;
+    font-weight: 600;
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    span {
+        color: red;
+    }
+}

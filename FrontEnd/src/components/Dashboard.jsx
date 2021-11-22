@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getTicketsData } from "../apis/apis";
 import DisplaySelectedTicket from "./DisplaySelectedTicket";
+import ErrorComponent from "./ErrorComponent";
 import TicketItem from "./TicketItem";
 
 export default function Dashboard() {
@@ -18,16 +19,17 @@ export default function Dashboard() {
     try {
       const data = await getTicketsData();
       console.log(">> ", data);
-      if (data === 401) {
+      if (data == 401) {
         setError({ msg: "Unauthorized Access" });
-      } else if (data === 404) {
+      } else if (data == 404) {
         setError({ msg: "Could not found the requested data" });
-      } else if (data === "Network Error") {
+      } else if (data == "Error: Network Error") {
         setError({
           msg: "Network error please check the server or refresh the page",
         });
+      } else {
+        settickets(data);
       }
-      settickets(data);
     } catch (error) {
       setError(error);
     }
@@ -49,7 +51,9 @@ export default function Dashboard() {
       <div className="Dashboard">
         <div className="title">Ticket Viewer</div>
         <div className="DisplayList">
-          {Array.isArray(tickets) && tickets.length > 0 ? (
+          {error ? (
+            <ErrorComponent message={error.msg} />
+          ) : Array.isArray(tickets) && tickets.length > 0 ? (
             <>
               <div className="subTitle">All Open Tickets</div>
               {tickets.map((item) => (
@@ -57,7 +61,7 @@ export default function Dashboard() {
               ))}
             </>
           ) : (
-            <>No Results found</>
+            <>No result found</>
           )}
         </div>
       </div>
