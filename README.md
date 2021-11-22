@@ -5,6 +5,8 @@ Jest with React testing library for UI unit testing.
 
 **Note: To get the list of tickets please replace your credentials in the config file of the BackEnd folder. Existing are the wrong credentials so it will throw error if you run the app.**
 
+### Techstack Used:</br>
+React, Node, Express, JavsScript(ES6), SASS, CSS3, HTML5, Jest, React Testing Library, React-Bootstrap, Axios 
 ### Requirement:</br>
 Node</br>
 Git</br>
