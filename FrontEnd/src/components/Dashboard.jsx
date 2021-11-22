@@ -3,6 +3,7 @@ import { getTicketsData } from "../apis/apis";
 import { CONSTANTS } from "../constants/constants";
 import DisplaySelectedTicket from "./DisplaySelectedTicket";
 import ErrorComponent from "./ErrorComponent";
+import Loader from "./Loader";
 import PaginationComponent from "./PaginationComponent";
 import TicketItem from "./TicketItem";
 
@@ -11,12 +12,13 @@ export default function Dashboard() {
   const [selectedTicket, setSelectedTicket] = useState({});
   const [showModal, setshowModal] = useState(false);
   const [error, setError] = useState(null);
+  const [isLoading, setisLoading] = useState(false);
 
   const [pages, setPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const dataLimit = 6;
-  const pageLimit = 4;
+  const dataLimit = 5;
+  const pageLimit = 3;
 
   function goToNextPage() {
     setCurrentPage((page) => page + 1);
@@ -42,7 +44,6 @@ export default function Dashboard() {
     let totalPages = Math.ceil(tickets.length / dataLimit);
     let groupSize =
       start + pageLimit <= totalPages ? pageLimit : totalPages - pageLimit;
-    console.log(">>> ", groupSize);
     return new Array(groupSize || 0).fill().map((_, idx) => start + idx + 1);
   };
 
@@ -51,6 +52,7 @@ export default function Dashboard() {
   }, []);
 
   const setTicketsData = async () => {
+    setisLoading(true);
     try {
       const data = await getTicketsData();
       console.log(">> ", data);
@@ -69,6 +71,7 @@ export default function Dashboard() {
     } catch (error) {
       setError(error);
     }
+    setisLoading(false);
   };
 
   const onItemClick = (data) => {
@@ -104,6 +107,8 @@ export default function Dashboard() {
                 goToNextPage={goToNextPage}
               />
             </>
+          ) : isLoading ? (
+            <Loader />
           ) : (
             <h3>{CONSTANTS.NO_DATA}</h3>
           )}

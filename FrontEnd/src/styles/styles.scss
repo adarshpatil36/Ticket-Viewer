@@ -17,6 +17,10 @@ body {
     align-items: center;
     flex-direction: column;
     .DisplayList {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         background-color: white;
         padding: 20px;
         border-radius: 8px;
@@ -37,6 +41,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin: 10px;
+    min-width: 800px;
     padding: 18px;
     div {
         display: flex;
