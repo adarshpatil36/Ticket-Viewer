@@ -43,7 +43,12 @@ export default function Dashboard() {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
     let totalPages = Math.ceil(tickets.length / dataLimit);
     let groupSize =
-      start + pageLimit <= totalPages ? pageLimit : totalPages - pageLimit;
+      start + pageLimit <= totalPages
+        ? pageLimit
+        : totalPages - pageLimit > 0
+        ? totalPages - pageLimit
+        : totalPages;
+
     return new Array(groupSize || 0).fill().map((_, idx) => start + idx + 1);
   };
 
